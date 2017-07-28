@@ -12,6 +12,7 @@ double Coversion(double);
 double Conversion2(double);
 double Calcular_LadoC(double, double, double);
 double Calcular_Area(double, double, double);
+double Factorial(double);
 
 float Calcular_Distancia(float x1, float y1, float x2, float y2) {
 	float distancia;
@@ -25,25 +26,31 @@ float Calcular_Distancia(float x1, float y1, float x2, float y2) {
 }
 
 double Calcular_Seno(double  radian) {
-	double seno = 0, numerador, denominador = 1, multiplicador;
+	double seno = 0, numerador, denominador = 1, multiplicador, factorial;
 	for (double i = 0; i < 25; i++) {
 		numerador = pow (-1, i);
-		for (double  j = 1; j <= (2 * i) + 1; j++) {
-			denominador *= j;
-		}
+		factorial = (2 * i) + 1;
+		denominador = Factorial(factorial);
 		multiplicador = pow (radian, (2 * i) + 1);
 		seno += (numerador / denominador) * multiplicador;
 	}
 	return seno;
 }
 
+double Factorial(double factorial) {
+	if (factorial == 0) {
+		return 1;
+	} else {
+		return factorial * Factorial(factorial - 1);
+	}
+}
+
 double Calcular_Coseno(double radian) {
-	double coseno = 0, numerador, denominador = 1, multiplicador;
+	double coseno = 0, numerador, denominador = 1, multiplicador, factorial;
 	for (double i = 0; i < 12; i++) {
 		numerador = pow (-1, i);
-		for (double j = 1; j <= 2 * i; j++) {
-			denominador *= j;
-		}
+		factorial = 2 * i;
+		denominador = Factorial(factorial);
 		multiplicador = pow (radian, 2 * i);
 		coseno += (numerador / denominador) * multiplicador;
 	}	
