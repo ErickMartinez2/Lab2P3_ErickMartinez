@@ -5,10 +5,11 @@
 using namespace std;
 
 float Calcular_Distancia(float, float, float, float);
-float Calcular_Seno(float);
-float Calcular_Coseno(float);
-void Calcular_Triangulo();
+double Calcular_Seno(double);
+double Calcular_Coseno(double);
+double Calcular_AnguloB(double, double, double);
 double Coversion(double);
+double Conversion2(double);
 
 float Calcular_Distancia(float x1, float y1, float x2, float y2) {
 	float distancia;
@@ -21,24 +22,24 @@ float Calcular_Distancia(float x1, float y1, float x2, float y2) {
 	return distancia;
 }
 
-float Calcular_Seno(float radian) {
-	float seno = 0, numerador, denominador = 1, multiplicador;
-	for (int i = 0; i < 20; i++) {
+double Calcular_Seno(double  radian) {
+	double seno = 0, numerador, denominador = 1, multiplicador;
+	for (double i = 0; i < 25; i++) {
 		numerador = pow (-1, i);
-		for (int j = 1; j <= (2 * i) + 1; j++) {
+		for (double  j = 1; j <= (2 * i) + 1; j++) {
 			denominador *= j;
 		}
-		multiplicador = pow (radian, 2 * i + 1);
+		multiplicador = pow (radian, (2 * i) + 1);
 		seno += (numerador / denominador) * multiplicador;
 	}
 	return seno;
 }
 
-float Calcular_Coseno(float radian) {
-	float coseno = 0, numerador, denominador = 1, multiplicador;
-	for (int i = 0; i < 20; i++) {
+double Calcular_Coseno(double radian) {
+	double coseno = 0, numerador, denominador = 1, multiplicador;
+	for (double i = 0; i < 12; i++) {
 		numerador = pow (-1, i);
-		for (int j = 1; j <= 2 * i; j++) {
+		for (double j = 1; j <= 2 * i; j++) {
 			denominador *= j;
 		}
 		multiplicador = pow (radian, 2 * i);
@@ -47,14 +48,29 @@ float Calcular_Coseno(float radian) {
 	return coseno;
 }
 
-void Calcular_Triangulo() {
+double Calcular_AnguloB(double lado_b, double seno_a, double lado_a) {
+	double angulo_b;
+	angulo_b = asin((lado_b * seno_a) / lado_a);
+	angulo_b = Conversion2(angulo_b);
+	return angulo_b;
+}
 
+double Calcular_LadoC(double seno_c, double lado_a, double seno_a) {
+	double lado_c;
+
+	return lado_c;
 }
 
 double Conversion(double angulo) {
 	double radian;
 	radian = angulo * (pi / 180);
 	return radian;
+}
+
+double Conversion2(double radian) {
+	double angulo;
+	angulo = radian * (180 / pi);
+	return angulo;
 }
 
 int main() {
@@ -116,7 +132,22 @@ int main() {
 				}
 				break;
 			case 3:
-				Calcular_Triangulo();
+				cout << endl;
+				double lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c, radian_a, radian_b, radian_c, seno_a, seno_b, seno_c;
+				cout << "-> Calcular Triangulo" << endl;
+				cout << "Ingrese el valor del lado a: ";
+				cin >> lado_a;
+				cout << "Ingrese el valor del lado b: ";
+				cin >> lado_b;
+				cout << "Ingrese el valor del angulo a: ";
+				cin >> angulo_a;
+				radian_a = Conversion(angulo_a);
+				seno_a = Calcular_Seno(radian_a);
+				angulo_b = Calcular_AnguloB(lado_b, seno_a, lado_a);
+				cout << angulo_b << endl;
+				angulo_c = 180 - (angulo_a + angulo_b);
+				cout << angulo_c  << endl;
+
 				break;
 			case 4:
 				cout << "Hasta Pronto!" << endl;
