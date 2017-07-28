@@ -1,6 +1,22 @@
 #include <iostream>
 using namespace std;
 
+void Calcular_Distancia();
+void Calcular_SenoCoseno();
+void Calcular_Triangulo();
+
+void Calcular_Distancia() {
+
+}
+
+void Calcular_SenoCoseno() {
+
+}
+
+void Calcular_Triangulo() {
+
+}
+
 int main() {
 	int opcion;
 	do {
