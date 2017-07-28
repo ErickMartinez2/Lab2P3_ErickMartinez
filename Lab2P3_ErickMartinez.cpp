@@ -10,6 +10,8 @@ double Calcular_Coseno(double);
 double Calcular_AnguloB(double, double, double);
 double Coversion(double);
 double Conversion2(double);
+double Calcular_LadoC(double, double, double);
+double Calcular_Area(double, double, double);
 
 float Calcular_Distancia(float x1, float y1, float x2, float y2) {
 	float distancia;
@@ -57,8 +59,22 @@ double Calcular_AnguloB(double lado_b, double seno_a, double lado_a) {
 
 double Calcular_LadoC(double seno_c, double lado_a, double seno_a) {
 	double lado_c;
-
+	lado_c = (seno_c * lado_a) / seno_a;
 	return lado_c;
+}
+
+double Calcular_Altura(double principal, double lado_a, double lado_b, double lado_c) {
+	double altura, semiperimetro;
+	semiperimetro = (lado_a + lado_b + lado_c) / 2;
+	altura = (2 / principal) * sqrt (semiperimetro * (semiperimetro - lado_a) * (semiperimetro - lado_b) * (semiperimetro - lado_c));
+	return altura;
+}
+
+double Calcular_Area(double lado_a, double lado_b, double lado_c) {
+	double semiperimetro, area;
+	semiperimetro = (lado_a + lado_b + lado_c) / 2;
+	area = sqrt (semiperimetro * (semiperimetro - lado_a) * (semiperimetro - lado_b) * (semiperimetro - lado_c));
+	return area;
 }
 
 double Conversion(double angulo) {
@@ -133,7 +149,7 @@ int main() {
 				break;
 			case 3:
 				cout << endl;
-				double lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c, radian_a, radian_b, radian_c, seno_a, seno_b, seno_c;
+				double lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c, radian_a, radian_b, radian_c, seno_a, seno_b, seno_c, area, altura_a, altura_b, altura_c;
 				cout << "-> Calcular Triangulo" << endl;
 				cout << "Ingrese el valor del lado a: ";
 				cin >> lado_a;
@@ -144,10 +160,26 @@ int main() {
 				radian_a = Conversion(angulo_a);
 				seno_a = Calcular_Seno(radian_a);
 				angulo_b = Calcular_AnguloB(lado_b, seno_a, lado_a);
-				cout << angulo_b << endl;
 				angulo_c = 180 - (angulo_a + angulo_b);
-				cout << angulo_c  << endl;
-
+				radian_c = Conversion(angulo_c);
+				seno_c = Calcular_Seno(radian_c);
+				lado_c = Calcular_LadoC(seno_c, lado_a, seno_a);
+				area = Calcular_Area(lado_a, lado_b, lado_c);
+				altura_a = Calcular_Altura(lado_a, lado_a, lado_b, lado_c);
+				altura_b = Calcular_Altura(lado_b, lado_a, lado_b, lado_c);
+				altura_c = Calcular_Altura(lado_c, lado_a, lado_b, lado_c);
+				cout << endl;
+				cout << "-> Informacion del Triangulo" << endl
+					<< "El lado a es: " << lado_a << endl
+					<< "El lado b es: " << lado_b << endl
+					<< "El lado c es: " << lado_c << endl
+					<< "El angulo a es: " << angulo_a << endl
+					<< "El angulo b es: " << angulo_b << endl
+					<< "El angulo c es: " << angulo_c << endl
+					<< "El area toal es: " << area << endl
+					<< "La altura a es: " << altura_a << endl
+					<< "La altura b es: " << altura_b << endl
+					<< "La altura c es: " << altura_c << endl;
 				break;
 			case 4:
 				cout << "Hasta Pronto!" << endl;
