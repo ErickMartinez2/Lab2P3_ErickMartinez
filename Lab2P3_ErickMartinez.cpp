@@ -4,7 +4,8 @@
 using namespace std;
 
 float Calcular_Distancia(float, float, float, float);
-void Calcular_SenoCoseno();
+float Calcular_Seno();
+float Calcular_Coseno();
 void Calcular_Triangulo();
 
 float Calcular_Distancia(float x1, float y1, float x2, float y2) {
@@ -18,8 +19,14 @@ float Calcular_Distancia(float x1, float y1, float x2, float y2) {
 	return distancia;
 }
 
-void Calcular_SenoCoseno() {
+float Calcular_Seno() {
+	float seno;
+	return seno;
+}
 
+float Calcular_Coseno() {
+	float coseno;
+	return coseno;
 }
 
 void Calcular_Triangulo() {
@@ -31,11 +38,11 @@ int main() {
 	do {
 		cout << endl;
 		cout << "   Menu" << endl
-			 << "1. Calcular Distancia" << endl
-			 << "2. Calcular Seno y Coseno" << endl
-			 << "3. Calcular Triangulo" << endl
-			 << "4. Salir" << endl
-			 << "Ingrese la opción: ";
+			<< "1. Calcular Distancia" << endl
+			<< "2. Calcular Seno y Coseno" << endl
+			<< "3. Calcular Triangulo" << endl
+			<< "4. Salir" << endl
+			<< "Ingrese su opción: ";
 		cin >> opcion;
 		cout << endl;
 		switch (opcion) {
@@ -53,7 +60,21 @@ int main() {
 				cout << "La distancia total es de: " << Calcular_Distancia(x1,y1,x2,y2) << endl;
 				break;
 			case 2:
-				Calcular_SenoCoseno();
+				{
+				int opcion2 = 0;
+				do {
+					cout << "-> Calcular Seno/Coseno" << endl
+						<< "1. Calcular Seno" << endl
+						<< "2. Calcular Coseno" << endl
+						<< "Ingrese su opción: ";
+					cin >> opcion2;
+				} while (opcion2 != 1 && opcion2 != 2);
+				if (opcion2 == 1) {
+					Calcular_Seno();
+				} else {
+					Calcular_Coseno();
+				}
+				}
 				break;
 			case 3:
 				Calcular_Triangulo();
