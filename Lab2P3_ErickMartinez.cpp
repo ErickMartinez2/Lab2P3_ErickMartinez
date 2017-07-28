@@ -6,7 +6,7 @@ using namespace std;
 
 float Calcular_Distancia(float, float, float, float);
 float Calcular_Seno(float);
-float Calcular_Coseno();
+float Calcular_Coseno(float);
 void Calcular_Triangulo();
 double Coversion(double);
 
@@ -22,11 +22,10 @@ float Calcular_Distancia(float x1, float y1, float x2, float y2) {
 }
 
 float Calcular_Seno(float radian) {
-	float seno = 0, numerador, denominador = 1, multiplicador, limite;
+	float seno = 0, numerador, denominador = 1, multiplicador;
 	for (int i = 0; i < 20; i++) {
 		numerador = pow (-1, i);
-		limite = (2 * i) + 1;
-		for (int j = 1; j <= limite; j++) {
+		for (int j = 1; j <= (2 * i) + 1; j++) {
 			denominador *= j;
 		}
 		multiplicador = pow (radian, 2 * i + 1);
@@ -35,8 +34,16 @@ float Calcular_Seno(float radian) {
 	return seno;
 }
 
-float Calcular_Coseno() {
-	float coseno;
+float Calcular_Coseno(float radian) {
+	float coseno = 0, numerador, denominador = 1, multiplicador;
+	for (int i = 0; i < 20; i++) {
+		numerador = pow (-1, i);
+		for (int j = 1; j <= 2 * i; j++) {
+			denominador *= j;
+		}
+		multiplicador = pow (radian, 2 * i);
+		coseno += (numerador / denominador) * multiplicador;
+	}	
 	return coseno;
 }
 
@@ -99,7 +106,12 @@ int main() {
 						radian = Conversion(angulo);
 						cout << "El resutado de seno es: " << Calcular_Seno(radian) << endl;
 					} else {
-						Calcular_Coseno();
+						double angulo2, radian2;
+						cout << "-> Calcular Coseno" << endl;
+						cout << "Ingrese el angulo en grados: ";
+						cin >> angulo2;
+						radian2 = Conversion(angulo2);
+						cout << "El resutado de coseno es: " << Calcular_Coseno(radian2) << endl;
 					}
 				}
 				break;
