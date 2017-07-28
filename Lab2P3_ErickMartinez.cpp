@@ -5,7 +5,7 @@
 using namespace std;
 
 float Calcular_Distancia(float, float, float, float);
-float Calcular_Seno();
+float Calcular_Seno(float);
 float Calcular_Coseno();
 void Calcular_Triangulo();
 double Coversion(double);
@@ -21,9 +21,17 @@ float Calcular_Distancia(float x1, float y1, float x2, float y2) {
 	return distancia;
 }
 
-float Calcular_Seno() {
-	float seno;
-	
+float Calcular_Seno(float radian) {
+	float seno = 0, numerador, denominador = 1, multiplicador, limite;
+	for (int i = 0; i < 20; i++) {
+		numerador = pow (-1, i);
+		limite = (2 * i) + 1;
+		for (int j = 1; j <= limite; j++) {
+			denominador *= j;
+		}
+		multiplicador = pow (radian, 2 * i + 1);
+		seno += (numerador / denominador) * multiplicador;
+	}
 	return seno;
 }
 
